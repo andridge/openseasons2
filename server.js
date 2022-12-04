@@ -1,6 +1,37 @@
 var express = require('express');
 var app = express();
 
+//
+var passport = require('passport');
+var session = require('express-session');
+//
+//
+var bodyParser = require('body-parser')
+const db = require("./models");
+//
+db.sequelize.sync({force:false});
+// For Passport
+app.use(session({
+  secret: "cat",
+  resave: true,
+  saveUninitialized: true
+})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+//models
+const models = require('./models');
+//body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+//routes
+const route = require('./routes/routes');
+var authRoute = require('./routes/auth_routes')(app,passport);
+//load passport strategies
+require('./passport/passport.js')(passport,models.User)
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -10,6 +41,9 @@ app.set('view engine', 'ejs');
 app.get("/",(req,res)=>{
     res.render("mainPage");
   });
-
-app.listen(1003);
-console.log('Server is listening on port 1003');
+  //app.use('/',router);
+//server listen
+app.use("/api_v1",route(express));
+app.listen(1003,"0.0.0.0",function(){
+  console.log("OPENSEASONS IS LIVE ON 1003");
+});
