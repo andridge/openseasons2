@@ -21,6 +21,7 @@
     "bcrypt": "^5.1.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.20.1",
+    "chatgpt": "^2.3.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -29,6 +30,7 @@
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "puppeteer": "^19.4.0",
     "sequelize": "^6.26.0"
   },
   "devDependencies": {

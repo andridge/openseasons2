@@ -16,5 +16,28 @@ self.save = async(req,res) => {
         })
 }
 }
+//get user by name
+self.findOne = async(req,res)=>{
+    try{
+  
+       //let firstName = req.params.firstName;
+        let data = await User.findOne({
+            attributes:["id","firstName","lastName"],
+            where:{
+                firstName:req.query.firstName,
+            }
+        });
+        return res.json({
+            status:"ok",
+            data:data,
+        });
+    }catch(error){
+        res.status(500).json({
+            status:"error",
+            data:error
+        })
+    }
+    
+}
 //export models
 module.exports = self;

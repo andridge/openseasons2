@@ -10,6 +10,9 @@ exports.signin = function(req, res) {
  
     res.render('mainPage');
 }
+exports.peoplepage = function(req,res){
+    res.render('peoplePage')
+}
 exports.primaryprofile = function(req, res) {
     
     res.render('primaryProfile', {firstName: req.user.firstName,
