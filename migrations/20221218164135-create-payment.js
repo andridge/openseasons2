@@ -3,13 +3,13 @@
 //const { v4 : uuidv4 }= require("uuid");
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return  queryInterface.createTable('Transactions', {
+    return  queryInterface.createTable('Payments', {
       id: {
         type: Sequelize.UUID,
         //defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      user_id: {
+      transaction_id: {
         type: Sequelize.STRING
       },
       merchant_id: {
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Transactions');
+    await queryInterface.dropTable('Payments');
   }
 };

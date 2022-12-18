@@ -1,15 +1,13 @@
-
 'use strict';
-
-//const { v4 : uuidv4 }= require("uuid"); 
+//const { v4 : uuidv4 }= require("uuid");
 module.exports = (sequelize, DataTypes) => {
-  const Transaction = sequelize.define('Transaction', {
-    user_id: DataTypes.STRING,
+  const Payment = sequelize.define('Payment', {
+    transaction_id: DataTypes.STRING,
     merchant_id: DataTypes.STRING,
     amount: DataTypes.DECIMAL,
     currency_id: DataTypes.STRING,
     status: DataTypes.STRING,
     timestamp: DataTypes.DATE
   }, {});
-  return Transaction;
+  return Payment;
 };
