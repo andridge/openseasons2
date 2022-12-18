@@ -14,6 +14,7 @@ body {
   font-size: 13px;
   font-family: "Roboto", sans-serif;
   overflow: hidden;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 /*--------------------
@@ -21,7 +22,7 @@ App
 --------------------*/
 .search-form {
   position: relative;
-  top: 50%;
+  top: 10%;
   left: 50%;
   width: 350px;
   height: 40px;
@@ -33,10 +34,10 @@ App
 }
 .search-form2 {
   
-  top: 65%;
+  top: 20%;
   left: 50%;
   width: 350px;
-  height: 120px;
+  height: 40px;
   border-radius: 5px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   transform: translate(-50%, -50%);
@@ -46,6 +47,8 @@ App
   position: absolute;
   display: block;
 overflow: auto;
+font-family: "Lucida Console", "Courier New", monospace;
+color:blueviolet
 }
 .search-form.focus {
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
@@ -170,13 +173,12 @@ overflow: auto;
 </style>
 <html>
     <form id="myForm"onsubmit="functionOne(event)" id="my-form" class="search-form" >
-        <input  type="search" value="" placeholder="Search" class="search-input">
+        <input  type="search" value="" placeholder="Search User" class="search-input">
         <button type="submit" class="search-button">
           <svg class="submit-button">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
           </svg>
         </button>
-        
         <div class="search-option">
           <div>
             <input name="firstName" type="radio" value="" id="type-users">
@@ -186,40 +188,10 @@ overflow: auto;
               </svg>
               <span>Users</span>
             </label>
-          </div>
-          
-          <div>
-            <input name="type" type="radio" value="type-posts" id="type-posts">
-            <label for="type-posts">
-              <svg class="edit-pen-title">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#post"></use>
-              </svg>
-              <span>Posts</span>
-            </label>
-          </div>
-          <div>
-            <input name="type" type="radio" value="type-images" id="type-images">
-            <label for="type-images">
-              <svg class="edit-pen-title">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#images"></use>
-              </svg>
-              <span>Images</span>
-            </label>
-          </div>
-          <div>
-            <input name="type" type="radio" value="type-special" id="type-special" >
-            <label for="type-special">
-              <svg class="edit-pen-title">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#special"></use>
-              </svg>
-              <span>Special</span>
-            </label>
-          </div>
-        </div>
-        
+          </div>       
+        </div>      
       </form>
- 
-      <div id="myDiv" class="search-form2" style="color:green;"></div>
+      <div id="myDiv" class="search-form2"></div>
       
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
         <symbol id="search" viewBox="0 0 32 32">
@@ -241,7 +213,8 @@ overflow: auto;
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 function functionOne(event){
-    event.preventDefault();
+  const div = document.querySelector('#myDiv');   
+  div.innerHTML=``;
 // Listen for the submit event on the form
 const searchInput = document.querySelector('input[type="search"]');
 
@@ -254,7 +227,8 @@ firstNameInput.value = searchInput.value;
 const firstName = firstNameInput.value;
 //console.log(firstName)
 const formData = new FormData(document.getElementById('myForm'));
-
+//const div = document.querySelector('#myDiv');
+//div.innerHTML += `<p> </p>`
 axios.get('/api_v1/get_user'+'?firstName='+firstName,formData,{
    /* params: {
     firstName: firstName
@@ -272,12 +246,12 @@ axios.get('/api_v1/get_user'+'?firstName='+firstName,formData,{
    // console.log(parsedJsonData);
     const div = document.querySelector('#myDiv');
     
-    div.innerHTML += `<p>${json.firstName}</p>`;
+    div.innerHTML += `<p>${json.firstName} ${json.lastName}</p>`;
    
   })
   .catch(error => {
     // handle the error
   });
-
+  event.preventDefault();
 }   
 </script>
