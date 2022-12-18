@@ -22,7 +22,7 @@ self.findOne = async(req,res)=>{
   
        //let firstName = req.params.firstName;
         let data = await User.findOne({
-            attributes:["id","firstName","lastName"],
+            attributes:["id","firstName","lastName","phoneNumber"],
             where:{
                 firstName:req.query.firstName,
             }

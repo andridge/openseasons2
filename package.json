@@ -31,7 +31,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "puppeteer": "^19.4.0",
-    "sequelize": "^6.26.0"
+    "sequelize": "^6.26.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "sequelize-cli": "^6.5.2"
