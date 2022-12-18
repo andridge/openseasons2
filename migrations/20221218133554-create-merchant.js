@@ -1,15 +1,13 @@
 'use strict';
-//const { v4 : uuidv4 }= require("uuid");
-//const { v4 : uuidv4 }= require("uuid");
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Merchants', {
       id: {
         type: Sequelize.UUID,
         //defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-    
       firstName: {
         type: Sequelize.STRING
       },
@@ -19,19 +17,16 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      phoneNumber:{
+      phoneNumber: {
         type: Sequelize.STRING
       },
-      mpesaPin:{
-        type:Sequelize.STRING
+      password: {
+        type: Sequelize.STRING
       },
-      password:{
+      mpesaPin: {
         type: Sequelize.STRING
       },
       publicKey: {
-        type: Sequelize.STRING
-      },
-      privateKey: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -45,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Merchants');
   }
 };

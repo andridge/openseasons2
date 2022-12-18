@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     phoneNumber:DataTypes.STRING,
     mpesaPin:DataTypes.STRING,
-    password:DataTypes.STRING
+    password:DataTypes.STRING,
+    publicKey:DataTypes.STRING,
+    privateKey:DataTypes.STRING
   }, {});
   //associations
   /*User.associate = function(models) {

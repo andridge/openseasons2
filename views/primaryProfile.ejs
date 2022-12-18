@@ -37,8 +37,11 @@ App
   top: 20%;
   left: 50%;
   width: 350px;
-  height: 40px;
-  border-radius: 5px;
+  height: 100px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   transform: translate(-50%, -50%);
   background: #fff;
@@ -246,12 +249,15 @@ axios.get('/api_v1/get_user'+'?firstName='+firstName,formData,{
    // console.log(parsedJsonData);
     const div = document.querySelector('#myDiv');
     
-    div.innerHTML += `<p>${json.firstName} ${json.lastName}</p>`;
-   
+    div.innerHTML += ` <div onclick="functionTwo(event)"><p>${json.firstName}</p><p> ${json.lastName} </p> <p>${json.phoneNumber}</p></div>`;
+    div.style.display = "block";
   })
   .catch(error => {
     // handle the error
   });
   event.preventDefault();
-}   
+}  
+function functionTwo(event){
+console.log("hahahah");
+} 
 </script>
