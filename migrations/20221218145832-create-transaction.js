@@ -3,32 +3,29 @@
 //const { v4 : uuidv4 }= require("uuid");
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Merchants', {
+    return  queryInterface.createTable('Transactions', {
       id: {
         type: Sequelize.UUID,
         //defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      firstName: {
+      user_id: {
         type: Sequelize.STRING
       },
-      lastName: {
+      merchant_id: {
         type: Sequelize.STRING
       },
-      email: {
+      amount: {
+        type: Sequelize.DECIMAL
+      },
+      currency: {
         type: Sequelize.STRING
       },
-      phoneNumber: {
+      status: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
-      },
-      mpesaPin: {
-        type: Sequelize.STRING
-      },
-      publicKey: {
-        type: Sequelize.STRING
+      timestamp: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Merchants');
+    await queryInterface.dropTable('Transactions');
   }
 };

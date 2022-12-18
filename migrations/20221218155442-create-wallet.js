@@ -1,33 +1,22 @@
+
 'use strict';
 
 //const { v4 : uuidv4 }= require("uuid");
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Merchants', {
+    return queryInterface.createTable('Wallets', {
       id: {
         type: Sequelize.UUID,
         //defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      firstName: {
+      user_id: {
         type: Sequelize.STRING
       },
-      lastName: {
-        type: Sequelize.STRING
+      balance: {
+        type: Sequelize.DECIMAL
       },
-      email: {
-        type: Sequelize.STRING
-      },
-      phoneNumber: {
-        type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      },
-      mpesaPin: {
-        type: Sequelize.STRING
-      },
-      publicKey: {
+      currency_id: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -41,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Merchants');
+    await queryInterface.dropTable('Wallets');
   }
 };

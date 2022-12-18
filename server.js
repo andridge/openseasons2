@@ -9,7 +9,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser')
 const db = require("./models");
 //
-db.sequelize.sync({force:false});
+db.sequelize.sync({force:true});
 // For Passport
 app.use(session({
   secret: "cat",

@@ -1,6 +1,7 @@
 const auth_ctrl = require("../controllers/auth_ctrl");
 module.exports = function(app, passport) {
     app.get('/', auth_ctrl.signup);
+
  
  
     app.get('/', auth_ctrl.signin);
@@ -20,9 +21,10 @@ module.exports = function(app, passport) {
  
         failureRedirect: '/'
     }
+    
  
 ));
-    
+
     function isLoggedIn(req, res, next) {
  
         if (req.isAuthenticated())
