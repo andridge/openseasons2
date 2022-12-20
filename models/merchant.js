@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     phoneNumber: DataTypes.STRING,
     password: DataTypes.STRING,
     mpesaPin: DataTypes.STRING,
-    publicKey: DataTypes.STRING
+    publicKey: DataTypes.TEXT('long'),
   }, {});
   return Merchant;
 };

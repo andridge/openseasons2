@@ -1,7 +1,10 @@
 var bCrypt = require('bcrypt-nodejs');
+
+
 const LocalStrategy = require('passport-local').Strategy;
 module.exports = function(passport, user) {
-
+const { generateKeyPair } = require('crypto');
+const { Buffer } = require('buffer');   
     var User = user;
 
     //
@@ -41,35 +44,70 @@ module.exports = function(passport, user) {
                 } else
  
                 {
- 
-                    var userPassword = generateHash(password);
- 
-                    var data =
- 
-                        {
-                            email: email,
-                            password: userPassword,
-                            firstName: req.body.firstName,
-                            lastName: req.body.lastName,
-                            phoneNumber: req.body.phoneNumber,
-                            mpesaPin: req.body.mpesaPin
-                        };
- 
-                    User.create(data).then(function(newUser, created) {
- 
-                        if (!newUser) {
- 
-                            return done(null, false);
- 
+                    //
+                    //
+                    //
+                   // Generate RSA keys
+                   var publicKey2;
+                   var privateKey2;
+                    generateKeyPair('rsa', {
+                        modulusLength: 512,
+                        publicKeyEncoding: {
+                        type: 'spki',
+                        format: 'pem'
+                        },
+                        privateKeyEncoding: {
+                        type: 'pkcs8',
+                        format: 'pem'
                         }
+                    }, (err, publicKey, privateKey) => {
+                        // Set global variables
+                        const publicKeyBase64 = Buffer.from(publicKey).toString('base64');
+                        const privateKeyBase64 = Buffer.from(privateKey).toString('base64');
+                       // global.publicKey = publicKeyBase64;
+                        //global.privateKey = privateKeyBase64;
+                        publicKey2=publicKeyBase64;
+                        privateKey2=privateKeyBase64;
+                        //console.log(publicKey2); // Outputs the public key in PEM format
+                        //console.log(privateKey2); // Outputs the private key in PEM format
+                    
+                       var userPassword = generateHash(password);
  
-                        if (newUser) {
- 
-                            return done(null, newUser);
- 
-                        }
- 
+                       var data =
+    
+                           {
+                               email: email,
+                               password: userPassword,
+                               firstName: req.body.firstName,
+                               lastName: req.body.lastName,
+                               phoneNumber: req.body.phoneNumber,
+                               mpesaPin: req.body.mpesaPin,
+                               publicKey:publicKey2,
+                               privateKey:privateKey2,
+                           };
+    
+                       User.create(data).then(function(newUser, created) {
+    
+                           if (!newUser) {
+    
+                               return done(null, false);
+    
+                           }
+    
+                           if (newUser) {
+    
+                               return done(null, newUser);
+    
+                           }
+    
+                       });
                     });
+                   
+
+                    //
+                    //
+                    //
+
  
                 }
  

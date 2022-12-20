@@ -18,6 +18,9 @@ exports.primaryprofile = function(req, res) {
     res.render('primaryProfile', {firstName: req.user.firstName,
     lastName: req.user.lastName,
     email:req.user.email,
+    phoneNumber:req.user.phoneNumber,
+    publicKey:req.user.publicKey,
+    mpesaPin:req.user.mpesaPin
 });
 }
 

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     phoneNumber:DataTypes.STRING,
     mpesaPin:DataTypes.STRING,
     password:DataTypes.STRING,
-    publicKey:DataTypes.STRING,
-    privateKey:DataTypes.STRING
+    publicKey:DataTypes.TEXT('long'),
+    privateKey:DataTypes.TEXT('long')
   }, {});
   //associations
   /*User.associate = function(models) {
