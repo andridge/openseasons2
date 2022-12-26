@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    password: DataTypes.STRING,
     mpesaPin: DataTypes.STRING,
     publicKey: DataTypes.TEXT('long'),
+    currency_id: DataTypes.STRING
   }, {});
   return Merchant;
 };

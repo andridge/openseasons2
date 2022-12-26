@@ -21,13 +21,13 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
-      },
       mpesaPin: {
         type: Sequelize.STRING
       },
       publicKey: {
+        type: Sequelize.STRING
+      },
+      currency_id: {
         type: Sequelize.STRING
       },
       createdAt: {

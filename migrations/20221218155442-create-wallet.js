@@ -13,6 +13,12 @@ module.exports = {
       user_id: {
         type: Sequelize.STRING
       },
+      userPublicKey:{
+        type: Sequelize.TEXT('long')
+      },
+      merchantPublicKey:{
+        type: Sequelize.TEXT('long')
+      },
       balance: {
         type: Sequelize.DECIMAL
       },
